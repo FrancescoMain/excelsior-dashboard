@@ -1,8 +1,16 @@
+import { BrowserRouter as Router } from "react-router-dom";
+
 import "./App.css";
-import Paperbase from "./Paperbase";
+import Paperbase from "./Paperbase/Paperbase";
 
 function App() {
-  return <Paperbase />;
+  return (
+    <div className="App">
+      <Router>
+        <Paperbase></Paperbase>
+      </Router>
+    </div>
+  );
 }
 
 export default App;

@@ -10,8 +10,11 @@ import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import { useNavigate } from "react-router-dom";
 
 export default function Content() {
+  const navigate = useNavigate();
+
   return (
     <Paper sx={{ maxWidth: 936, margin: "auto", overflow: "hidden" }}>
       <AppBar
@@ -37,8 +40,14 @@ export default function Content() {
               />
             </Grid>
             <Grid item>
-              <Button variant="contained" sx={{ mr: 1 }}>
-                Add user
+              <Button
+                onClick={() => {
+                  navigate("/excelsior-dashboard/add-reservation");
+                }}
+                variant="contained"
+                sx={{ mr: 1 }}
+              >
+                Aggiungi prenotazione
               </Button>
               <Tooltip title="Reload">
                 <IconButton>

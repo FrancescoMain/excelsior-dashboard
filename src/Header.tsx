@@ -13,6 +13,7 @@ import Tabs from "@mui/material/Tabs";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
@@ -22,6 +23,40 @@ interface HeaderProps {
 
 export default function Header(props: HeaderProps) {
   const { onDrawerToggle } = props;
+  const navigate = useNavigate();
+
+  const tabs = [
+    {
+      id: 0,
+      label: "Reservations",
+      path: "/excelsior-dashboard",
+      onClick: () => {
+        navigate("/excelsior-dashboard");
+      },
+    },
+    {
+      id: 1,
+      label: "Bilancio",
+      path: "/excelsior-dashboard/bilancio",
+
+      onClick: () => {
+        navigate("/excelsior-dashboard/bilancio");
+      },
+    },
+    {
+      id: 2,
+      label: "Aggiungi Prenotazione",
+      path: "/excelsior-dashboard/add-reservation",
+      onClick: () => {
+        navigate("/excelsior-dashboard/add-reservation");
+      },
+    },
+  ];
+
+  const handleActive = () => {
+    const activeTab = tabs.find((tab) => tab.path === window.location.pathname);
+    return activeTab ? activeTab.id : "";
+  };
 
   return (
     <React.Fragment>
@@ -82,7 +117,7 @@ export default function Header(props: HeaderProps) {
           <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
               <Typography color="inherit" variant="h5" component="h1">
-                Authentication
+                Bilancio
               </Typography>
             </Grid>
             <Grid item>
@@ -111,11 +146,10 @@ export default function Header(props: HeaderProps) {
         elevation={0}
         sx={{ zIndex: 0 }}
       >
-        <Tabs value={0} textColor="inherit">
-          <Tab label="Users" />
-          <Tab label="Sign-in method" />
-          <Tab label="Templates" />
-          <Tab label="Usage" />
+        <Tabs value={handleActive()} textColor="inherit">
+          {tabs.map((tab) => (
+            <Tab key={tab.label} label={tab.label} onClick={tab.onClick}></Tab>
+          ))}
         </Tabs>
       </AppBar>
     </React.Fragment>
