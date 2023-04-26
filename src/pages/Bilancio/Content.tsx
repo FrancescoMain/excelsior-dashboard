@@ -1,19 +1,33 @@
-import * as React from "react";
+import SearchIcon from "@mui/icons-material/Search";
 import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Tooltip from "@mui/material/Tooltip";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import RefreshIcon from "@mui/icons-material/Refresh";
+import axios, { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IFormInput } from "./AddReservation/type";
+import { ResContainer } from "./style";
 
 export default function Content() {
   const navigate = useNavigate();
+  const [data, setData] = useState<IFormInput[]>([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://script.google.com/macros/s/AKfycbyM9VgTOBqM6NEZDef9oidDbTv5Fy3DgSIBLHfN6NFhkehtryoqpJIFvPNlkLtKXxUe/exec"
+      )
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <Paper sx={{ maxWidth: 936, margin: "auto", overflow: "hidden" }}>
@@ -47,20 +61,21 @@ export default function Content() {
                 variant="contained"
                 sx={{ mr: 1 }}
               >
-                Aggiungi prenotazione
+                +
               </Button>
-              <Tooltip title="Reload">
-                <IconButton>
-                  <RefreshIcon color="inherit" sx={{ display: "block" }} />
-                </IconButton>
-              </Tooltip>
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
-      <Typography sx={{ my: 5, mx: 2 }} color="text.secondary" align="center">
-        No users for this project yet
-      </Typography>
+      {data.map((res, index) => (
+        <ResContainer key={index}>
+          <div>Nominativo: {res.nominativo}</div>
+          <div>Data Arrivo : {res.dataArrivo}</div>
+          <div>Data Partenza : {res.dataPartenza}</div>
+          <div>Prezzo Lordo : {res.profitto}€</div>
+          <div>Commissioni : {res.commissioni}€</div>
+        </ResContainer>
+      ))}
     </Paper>
   );
 }

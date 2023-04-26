@@ -45,7 +45,7 @@ export default function Header(props: HeaderProps) {
     },
     {
       id: 2,
-      label: "Aggiungi Prenotazione",
+      label: "Aggiungi",
       path: "/excelsior-dashboard/add-reservation",
       onClick: () => {
         navigate("/excelsior-dashboard/add-reservation");
