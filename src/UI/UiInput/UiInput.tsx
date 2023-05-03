@@ -11,7 +11,7 @@ export const UiInput = ({
 }: UiInputProps) => {
   return (
     <Container>
-      <Input id={id} type={type} {...register} placeholder={label} />
+      <Input id={id} type={type} step={0.01} {...register} placeholder={label} />
       <div>
         {errors?.type === "required" && (
           <P role="alert">{errorMessage?.required}</P>

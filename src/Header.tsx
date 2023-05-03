@@ -14,6 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import "./App.css";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
@@ -60,7 +61,7 @@ export default function Header(props: HeaderProps) {
 
   return (
     <React.Fragment>
-      <AppBar color="primary" position="sticky" elevation={0}>
+      <AppBar className="header" color="primary" position="sticky" elevation={0}>
         <Toolbar>
           <Grid container spacing={1} alignItems="center">
             <Grid sx={{ display: { sm: "none", xs: "block" } }} item>

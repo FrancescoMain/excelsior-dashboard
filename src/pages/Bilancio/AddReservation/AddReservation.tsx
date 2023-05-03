@@ -19,12 +19,16 @@ export const AddReservation = () => {
   const onSubmit: SubmitHandler<IFormInput> = (data) =>{
     const dataArrivo = new Date(data.dataArrivo).toLocaleDateString("it-IT");
     const dataPartenza = new Date(data.dataPartenza).toLocaleDateString("it-IT");
-    console.log(dataArrivo);
+    const profitto = data.profitto.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace(".", ",");
+    const commissioni = data.commissioni.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace(".", ",");
+    const netto = data.profitto - data.commissioni  
+    console.log(netto);
+    
     
 
     axios
       .post(
-        `https://script.google.com/macros/s/AKfycbyXjcE5sGx4GKtEznXT2TO6pjA1vH--bNUdcbXOIngMG0rgIyKZ0y_flcKlB-i08pHX/exec?dataArrivo=${dataArrivo}&dataPartenza=${dataPartenza}&nominativo=${data.nominativo}&profitto=${data.profitto}&commissioni=${data.commissioni}`
+        `https://script.google.com/macros/s/AKfycby4KQP5E8AUiFiZu2bX9tZud50YaOITj-Bo7R8rL0V8VbR5aCh9QQUhLbpUWhLsFhep/exec?dataArrivo=${dataArrivo}&dataPartenza=${dataPartenza}&nominativo=${data.nominativo}&profitto=${profitto}&commissioni=${commissioni}&netto=${netto}`
       )
       .then((reponse) => {
         console.log(reponse);

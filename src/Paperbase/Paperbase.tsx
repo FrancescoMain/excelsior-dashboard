@@ -36,7 +36,7 @@ export default function Paperbase() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider  theme={theme}>
       <Box sx={{ display: "flex", minHeight: "100vh" }}>
         <CssBaseline />
         <Box

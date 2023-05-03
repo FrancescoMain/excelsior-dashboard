@@ -19,7 +19,7 @@ export default function Content() {
   useEffect(() => {
     axios
       .get(
-        "https://script.google.com/macros/s/AKfycbyM9VgTOBqM6NEZDef9oidDbTv5Fy3DgSIBLHfN6NFhkehtryoqpJIFvPNlkLtKXxUe/exec"
+        "https://script.google.com/macros/s/AKfycby4KQP5E8AUiFiZu2bX9tZud50YaOITj-Bo7R8rL0V8VbR5aCh9QQUhLbpUWhLsFhep/exec"
       )
       .then((response) => {
         setData(response.data);
@@ -67,7 +67,7 @@ export default function Content() {
           </Grid>
         </Toolbar>
       </AppBar>
-          <Table data= {data} />
+          <Table data= {data}/>
     </Paper>
   );
 }
