@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/excelsior-dashboard/static/css/main.073c9b0a.css",
-    "main.js": "/excelsior-dashboard/static/js/main.3f058f44.js",
+    "main.js": "/excelsior-dashboard/static/js/main.c35b5213.js",
     "static/js/787.d7227047.chunk.js": "/excelsior-dashboard/static/js/787.d7227047.chunk.js",
     "index.html": "/excelsior-dashboard/index.html",
     "main.073c9b0a.css.map": "/excelsior-dashboard/static/css/main.073c9b0a.css.map",
-    "main.3f058f44.js.map": "/excelsior-dashboard/static/js/main.3f058f44.js.map",
+    "main.c35b5213.js.map": "/excelsior-dashboard/static/js/main.c35b5213.js.map",
     "787.d7227047.chunk.js.map": "/excelsior-dashboard/static/js/787.d7227047.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.3f058f44.js"
+    "static/js/main.c35b5213.js"
   ]
 }
