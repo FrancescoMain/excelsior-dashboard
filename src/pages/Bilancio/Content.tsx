@@ -5,12 +5,12 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IFormInput } from "./AddReservation/type";
-import { ResContainer } from "./style";
+import { DataCont, ResContainer } from "./style";
+import Table from "./components/Table/Table";
 
 export default function Content() {
   const navigate = useNavigate();
@@ -67,15 +67,7 @@ export default function Content() {
           </Grid>
         </Toolbar>
       </AppBar>
-      {data.map((res, index) => (
-        <ResContainer key={index}>
-          <div>Nominativo: {res.nominativo}</div>
-          <div>Data Arrivo : {res.dataArrivo}</div>
-          <div>Data Partenza : {res.dataPartenza}</div>
-          <div>Prezzo Lordo : {res.profitto}€</div>
-          <div>Commissioni : {res.commissioni}€</div>
-        </ResContainer>
-      ))}
+          <Table data= {data} />
     </Paper>
   );
 }

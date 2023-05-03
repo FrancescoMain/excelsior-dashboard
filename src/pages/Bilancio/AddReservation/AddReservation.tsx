@@ -16,16 +16,21 @@ export const AddReservation = () => {
     formState: { errors },
   } = useForm<IFormInput>();
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) =>
+  const onSubmit: SubmitHandler<IFormInput> = (data) =>{
+    const dataArrivo = new Date(data.dataArrivo).toLocaleDateString("it-IT");
+    const dataPartenza = new Date(data.dataPartenza).toLocaleDateString("it-IT");
+    console.log(dataArrivo);
+    
+
     axios
       .post(
-        "https://sheet.best/api/sheets/3771ab79-8944-47a3-80b3-a7376d260787/tabs/Bilancio",
-        data
+        `https://script.google.com/macros/s/AKfycbyXjcE5sGx4GKtEznXT2TO6pjA1vH--bNUdcbXOIngMG0rgIyKZ0y_flcKlB-i08pHX/exec?dataArrivo=${dataArrivo}&dataPartenza=${dataPartenza}&nominativo=${data.nominativo}&profitto=${data.profitto}&commissioni=${data.commissioni}`
       )
       .then((reponse) => {
         console.log(reponse);
         navigate("/excelsior-dashboard");
       });
+    }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
