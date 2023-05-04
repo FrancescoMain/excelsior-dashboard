@@ -14,7 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
-import "./App.css";
+import "../App.css"
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 

@@ -5,13 +5,14 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import Navigator from "../Navigator";
-import Content from "../pages/Bilancio/Content";
+import Navigator from "../Navigator/Navigator";
+import Content from "../../pages/Bilancio/Content";
 import Header from "../Header";
 import { theme } from "./data";
 
 import { Route, Routes } from "react-router-dom";
-import { AddReservation } from "../pages/Bilancio/AddReservation/AddReservation";
+import { AddReservation } from "../../pages/Bilancio/AddReservation/AddReservation";
+import { Reservation } from "../../pages/Reservation/Reservation";
 
 function Copyright() {
   return (
@@ -68,6 +69,7 @@ export default function Paperbase() {
                 path="/excelsior-dashboard/add-reservation"
                 element={<AddReservation />}
               />
+              <Route path="/excelsior-dashboard/reservation/:id" element= {<Reservation/>}></Route>
             </Routes>
           </Box>
           <Box component="footer" sx={{ p: 2, bgcolor: "#eaeff1" }}>

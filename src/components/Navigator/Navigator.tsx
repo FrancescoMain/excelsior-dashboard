@@ -11,7 +11,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import DnsRoundedIcon from "@mui/icons-material/DnsRounded";
 import BalanceIcon from "@mui/icons-material/Balance";
 import { useNavigate } from "react-router-dom";
-import { NavigationList } from "./redux/data";
+import { NavigationList } from "../../redux/data";
 
 const item = {
   py: "2px",

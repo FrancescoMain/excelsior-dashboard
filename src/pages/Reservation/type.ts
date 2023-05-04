@@ -1,11 +1,12 @@
-  export  interface IFormInput {
+export  interface Data {
+    id: number,
     dataArrivo: string,
     dataPartenza: string,
     nominativo: string,
     profitto: number,
     commissioni: number,
-    durataDelSoggiorno: number,
-    nOspiti: number,
     cell: string,
-    tariffa: string
+    nOspiti: number,
+    durataDelSoggiorno: number,
+    tariffa: string,
   }

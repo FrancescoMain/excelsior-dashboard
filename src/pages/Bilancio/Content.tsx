@@ -14,20 +14,7 @@ import Table from "./components/Table/Table";
 
 export default function Content() {
   const navigate = useNavigate();
-  const [data, setData] = useState<IFormInput[]>([]);
 
-  useEffect(() => {
-    axios
-      .get(
-        "https://script.google.com/macros/s/AKfycby4KQP5E8AUiFiZu2bX9tZud50YaOITj-Bo7R8rL0V8VbR5aCh9QQUhLbpUWhLsFhep/exec"
-      )
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   return (
     <Paper sx={{ maxWidth: 936, margin: "auto", overflow: "hidden" }}>
@@ -67,7 +54,7 @@ export default function Content() {
           </Grid>
         </Toolbar>
       </AppBar>
-          <Table data= {data}/>
+          <Table/>
     </Paper>
   );
 }

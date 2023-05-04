@@ -1,60 +1,72 @@
-import { DataGrid, GridColDef} from '@mui/x-data-grid';
 
-const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70 },
+import { DataGrid} from '@mui/x-data-grid';
+import { Params } from './type';
+import { columns } from './lib';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { IFormInput } from '../../AddReservation/type';
+import axios from 'axios';
+import { formatDate } from '../../../functions';
+import "./style.css"
 
-  { field: 'dataArrivo', headerName: 'Data Arrivo', width: 120 },
-  { field: 'dataPartenza', headerName: 'Data Partenza', width: 130 },
-  { field: 'nominativo', headerName: 'Nominativo', width: 170 },
-  {
-    field: 'profitto',
-    headerName: 'Profitto',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'commissioni',
-    headerName: 'Commissioni',
-    width: 120,
-  },
-  {
-    field: 'netto',
-    headerName: 'Profitto Netto',
-    width: 120,
-  },
-];
+export default function DataTable() {
+  // DATA
+  const [data, setData] = useState<IFormInput[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false)
 
 
+  useEffect(() => {
+    axios
+      .get(
+        "https://script.google.com/macros/s/AKfycby4KQP5E8AUiFiZu2bX9tZud50YaOITj-Bo7R8rL0V8VbR5aCh9QQUhLbpUWhLsFhep/exec"
+      )
+      .then((response) => {
+        setData(response.data);
+        setIsLoaded(true)
 
-function formatDate(date: Date) {
-    return date.toLocaleDateString('it-IT');
-}
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-export default function DataTable(data : any) {
-    const formattedData = data.data.map((item: any) => ({
-        ...item,
-        dataArrivo: formatDate(new Date(item.dataArrivo)),
-        dataPartenza: formatDate(new Date(item.dataPartenza)),
-        profitto: item.profitto + "€",
-        commissioni: item.commissioni + "€",
-        netto: item.profitto - item.commissioni + "€"
+  const formattedData = data.map((item: any) => ({
+    ...item,
+    dataArrivo: formatDate(new Date(item.dataArrivo)),
+    dataPartenza: formatDate(new Date(item.dataPartenza)),
+    profitto: item.profitto + "€",
+    commissioni: item.commissioni + "€",
+    netto: (item.profitto - item.commissioni).toFixed(2) + "€"
+  }));
 
-    }));
+  //BUSINESS LOGIC
+  const navigate = useNavigate()
 
-    
+  const handleRowClick = (params : Params) => {
+    const id = (params.row.id);    
+    navigate(`/excelsior-dashboard/reservation/${id}`)   
+  };
+  
+  // MARKUP  
   return (
+    
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={formattedData}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
+      {isLoaded 
+      ? <DataGrid
+      rows={formattedData}
+      columns={columns}
+      pageSizeOptions={[5, 10]}
+      onRowClick={handleRowClick}        
+      initialState={{
+        pagination: {
+          paginationModel: { page: 0, pageSize: 5 },
+        },
+      }}
+    /> 
+      : <div className='loader'> 
+          <div className="lds-dual-ring"></div>
+        </div>}
+       
     </div>
   );
 }

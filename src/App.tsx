@@ -1,7 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 
 import "./App.css";
-import Paperbase from "./Paperbase/Paperbase";
+import Paperbase from "./components/Paperbase/Paperbase";
 
 function App() {
   return (

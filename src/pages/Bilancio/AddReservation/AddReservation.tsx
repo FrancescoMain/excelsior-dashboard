@@ -28,7 +28,7 @@ export const AddReservation = () => {
 
     axios
       .post(
-        `https://script.google.com/macros/s/AKfycby4KQP5E8AUiFiZu2bX9tZud50YaOITj-Bo7R8rL0V8VbR5aCh9QQUhLbpUWhLsFhep/exec?dataArrivo=${dataArrivo}&dataPartenza=${dataPartenza}&nominativo=${data.nominativo}&profitto=${profitto}&commissioni=${commissioni}&netto=${netto}`
+        `https://script.google.com/macros/s/AKfycbw8WKBiNBNuvpGtVewDElmehrAyHFvsWCmfmujwd6dWW54VFZOU2iDtE10Mcq-MVHLT/exec?dataArrivo=${dataArrivo}&dataPartenza=${dataPartenza}&nominativo=${data.nominativo}&profitto=${profitto}&commissioni=${commissioni}&netto=${netto}&cell=${data.cell}&durataDelSoggiorno=${data.durataDelSoggiorno}&nOspiti=${data.nOspiti}&tariffa=${data.tariffa}`
       )
       .then((reponse) => {
         console.log(reponse);
@@ -103,8 +103,57 @@ export const AddReservation = () => {
           label="Commissioni"
           id="commissioni"
         />
+        <h3>BOOKING INFO</h3>
+        <UiInput
+          type="number"
+          errors={errors.durataDelSoggiorno}
+          register={register("durataDelSoggiorno", {
+            required: true,
+          })}
+          errorMessage={{
+            required: "Questo campo è richiesto",
+          }}
+          label="Durata del Soggiorno"
+          id="durataDelSoggiorno"
+        />
+        <UiInput
+          type="number"
+          errors={errors.nOspiti}
+          register={register("nOspiti", {
+            required: true,
+          })}
+          errorMessage={{
+            required: "Questo campo è richiesto",
+          }}
+          label="Numero Ospiti"
+          id="nOspiti"
+        />
+        <UiInput
+          type="string"
+          errors={errors.cell}
+          register={register("cell", {
+            required: true,
+          })}
+          errorMessage={{
+            required: "Questo campo è richiesto",
+          }}
+          label="Cellulare"
+          id="cell"
+        />
+        <UiInput
+          type="string"
+          errors={errors.tariffa}
+          register={register("tariffa", {
+            required: true,
+          })}
+          errorMessage={{
+            required: "Questo campo è richiesto",
+          }}
+          label="Tariffa (Flex / NoFlex)"
+          id="tariffa"
+        />
+        <Button >Add</Button>
       </Container>
-      <Button>Add</Button>
     </form>
   );
 };
